@@ -1,21 +1,13 @@
 import nbconvert.exporters.pdf as pdf
 import sys
 
-if len(sys.argv) == 2:
-    name = sys.argv[1]
-else:
-    name = 'book.tex'
-    
-f = open(name, 'r',  encoding="iso-8859-1")
-filedata = f.read()
-f.close()
-
+name = sys.argv[1] if len(sys.argv) == 2 else 'book.tex'
+with open(name, 'r',  encoding="iso-8859-1") as f:
+    filedata = f.read()
 newdata = filedata.replace('\chapter{Preface}', '\chapter*{Preface}')
 
-f = open(name, 'w', encoding="iso-8859-1")
-f.write(newdata)
-f.close()
-
+with open(name, 'w', encoding="iso-8859-1") as f:
+    f.write(newdata)
 p = pdf.PDFExporter()
 p.run_latex(name)
 

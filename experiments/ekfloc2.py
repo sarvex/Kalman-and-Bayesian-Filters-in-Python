@@ -100,10 +100,12 @@ def H_of(x, landmark_pos):
     my = landmark_pos[1]
     q = (mx - x[0, 0])**2 + (my - x[1, 0])**2
 
-    H = array(
-            [[-(mx - x[0, 0]) / sqrt(q), -(my - x[1, 0]) / sqrt(q), 0],
-             [ (my - x[1, 0]) / q,       -(mx - x[0, 0]) / q,      -1]])
-    return H
+    return array(
+        [
+            [-(mx - x[0, 0]) / sqrt(q), -(my - x[1, 0]) / sqrt(q), 0],
+            [(my - x[1, 0]) / q, -(mx - x[0, 0]) / q, -1],
+        ]
+    )
 
 
 def Hx(x, landmark_pos):
@@ -114,9 +116,7 @@ def Hx(x, landmark_pos):
     my = landmark_pos[1]
     q = (mx - x[0, 0])**2 + (my - x[1, 0])**2
 
-    Hx = array([[sqrt(q)],
-                [atan2(my - x[1, 0], mx - x[0, 0]) - x[2, 0]]])
-    return Hx
+    return array([[sqrt(q)], [atan2(my - x[1, 0], mx - x[0, 0]) - x[2, 0]]])
 
 dt = 1.0
 ekf = RobotEKF(dt)

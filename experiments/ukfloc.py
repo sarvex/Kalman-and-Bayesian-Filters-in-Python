@@ -42,18 +42,17 @@ def move(x, u, dt, wheelbase):
 
     dist = v*dt
 
-    if abs(steering_angle) > 0.001:
-        b = dist / wheelbase * tan(steering_angle)
-        r = wheelbase / tan(steering_angle) # radius
-
-        sinh = sin(h)
-        sinhb = sin(h + b)
-        cosh = cos(h)
-        coshb = cos(h + b)
-
-        return x + array([-r*sinh + r*sinhb, r*cosh - r*coshb, b])
-    else:
+    if abs(steering_angle) <= 0.001:
         return x + array([dist*cos(h), dist*sin(h), 0])
+    b = dist / wheelbase * tan(steering_angle)
+    r = wheelbase / tan(steering_angle) # radius
+
+    sinh = sin(h)
+    sinhb = sin(h + b)
+    cosh = cos(h)
+    coshb = cos(h + b)
+
+    return x + array([-r*sinh + r*sinhb, r*cosh - r*coshb, b])
 
 
 def state_mean(sigmas, Wm):

@@ -13,7 +13,6 @@ class WorldMap(object):
     def __init__(self, N=100):
         
         self.N = N
-        pass
         
         
         
@@ -21,10 +20,9 @@ class WorldMap(object):
     def measurements(self, x, theta):
         """ return array of measurements (range, angle) if robot is in position
         x"""
-    
+
         N = 10
-        a = np.linspace(-np.pi, np.pi, self.N)
-        return a
+        return np.linspace(-np.pi, np.pi, self.N)
         
         
 

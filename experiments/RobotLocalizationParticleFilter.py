@@ -124,7 +124,7 @@ def residual_resample(w):
     indexes = np.zeros(N, 'i')
     k = 0
     for i in range(N):
-        for j in range(w_ints[i]):
+        for _ in range(w_ints[i]):
             indexes[k] = i
             k += 1
     cumsum = np.cumsum(residual)
@@ -149,7 +149,7 @@ def residual_resample2(w):
     indexes = np.zeros(N, 'i')
     i = 0
     for j in range(N):
-        for k in range(w_ints[j]):
+        for _ in range(w_ints[j]):
             indexes[i] = j
             i += 1
     cumsum = np.cumsum(Ws)

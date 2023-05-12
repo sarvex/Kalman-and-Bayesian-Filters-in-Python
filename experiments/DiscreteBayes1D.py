@@ -79,9 +79,9 @@ class DiscreteBayes1D(object):
         # copy results to the belief vector using swap-copy idiom
         self.belief, self.belief_k = self.belief_k, self.belief
 
-def add_noise (Z, count):
+def add_noise(Z, count):
     n= len(Z)
-    for i in range(count):
+    for _ in range(count):
         j = random.randint(0,n)
         Z[j] = random.randint(0,2)
 

@@ -266,11 +266,7 @@ def plot_3d_covariance(mean, cov):
 
     # ensure axis are of the same size so everything is plotted with the same
     # scale
-    if wx > wy:
-        w = wx
-    else:
-        w = wy
-
+    w = max(wx, wy)
     minx = mean[0] - w
     maxx = mean[0] + w
     miny = mean[1] - w
@@ -330,11 +326,7 @@ def plot_3d_sampled_covariance(mean, cov):
 
     # ensure axis are of the same size so everything is plotted with the same
     # scale
-    if wx > wy:
-        w = wx
-    else:
-        w = wy
-
+    w = max(wx, wy)
     minx = mean[0] - w
     maxx = mean[0] + w
     miny = mean[1] - w
@@ -464,9 +456,7 @@ def plot_track(ps, actual, zs, cov, std_scale=1,
 
 
 def plot_covariance(P, index=(0, 0)):
-    ps = []
-    for p in P:
-        ps.append(p[index[0], index[1]])
+    ps = [p[index[0], index[1]] for p in P]
     plt.plot(ps)
 
 

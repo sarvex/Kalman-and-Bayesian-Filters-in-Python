@@ -13,17 +13,13 @@ def df(x, p):
     if p == 0:
         return sin(x)
 
-        return x
     if p % 4 == 1:
         return cos(x)
 
     if p % 4 == 2:
         return -sin(x)
 
-    if p % 4 == 3:
-        return -cos(x)
-
-    return sin(x)
+    return -cos(x) if p % 4 == 3 else sin(x)
 
 
 

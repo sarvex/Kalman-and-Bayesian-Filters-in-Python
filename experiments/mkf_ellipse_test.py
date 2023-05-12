@@ -29,7 +29,7 @@ def plot_track(noise, count, R, Q=0, plot_P=True, title='Kalman Filter'):
     ps = []
     zs = []
     cov = []
-    for t in range (count):
+    for _ in range (count):
         z = dog.sense()
         f.update (z)
         #print (t,z)

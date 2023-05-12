@@ -208,7 +208,7 @@ def show_sigmas_for_2_kappas():
     xs = np.arange(-4, 4, 0.1)
     mean = 0
     sigma = 1.5
-    ys = [stats.gaussian(x, mean, sigma*sigma) for x in xs]
+    ys = [stats.gaussian(x, mean, sigma**2) for x in xs]
 
 
 
@@ -218,14 +218,14 @@ def show_sigmas_for_2_kappas():
 
     samples = [x0,x1,x2]
     for x in samples:
-        p1 = plt.scatter([x], [stats.gaussian(x, mean, sigma*sigma)], s=80, color='k')
+        p1 = plt.scatter([x], [stats.gaussian(x, mean, sigma**2)], s=80, color='k')
 
     kappa = -.5
     x0,x1,x2 = _sigma_points(mean, sigma, kappa)
 
     samples = [x0,x1,x2]
     for x in samples:
-        p2 = plt.scatter([x], [stats.gaussian(x, mean, sigma*sigma)], s=80, color='b')
+        p2 = plt.scatter([x], [stats.gaussian(x, mean, sigma**2)], s=80, color='b')
 
     plt.legend([p1,p2], ['$kappa$=2', '$kappa$=-0.5'])
     plt.plot(xs, ys)
@@ -365,13 +365,13 @@ def plot_scatter_of_bearing_error():
 
 def plot_scatter_moving_target():
     pos = np.array([5., 5.])
-    for i in range(5):
+    for _ in range(5):
         pos += (0.5, 1.)
         actual_angle = math.atan2(pos[1], pos[0])
         d = math.sqrt(pos[0]**2 + pos[1]**2)
 
         xs, ys = [], []
-        for i in range (100):
+        for _ in range (100):
             a = actual_angle + randn() * math.radians(1)
             xs.append(d*math.cos(a))
             ys.append(d*math.sin(a))
@@ -419,7 +419,7 @@ def _isct(pa, pb, alpha, beta):
 
 
 def _plot_iscts(pos, sa, sb, N=4):
-    for i in range(N):
+    for _ in range(N):
         pos += (0.5, 1.)
         actual_angle_a = math.atan2(pos[1] - sa[1], pos[0] - sa[0])
         actual_angle_b = math.atan2(pos[1] - sb[1], pos[0] - sb[0])
@@ -429,7 +429,7 @@ def _plot_iscts(pos, sa, sb, N=4):
 
         xs, ys, xs_a, xs_b, ys_a, ys_b = [], [], [], [], [], []
 
-        for i in range (300):
+        for _ in range (300):
             a_a = actual_angle_a + randn() * math.radians(1)
             a_b = actual_angle_b + randn() * math.radians(1)
 

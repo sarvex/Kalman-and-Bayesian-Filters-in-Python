@@ -201,12 +201,14 @@ def Gaussian(mu, sigma, x):
 
 
 def test_gaussian(N):
-    for i in range(N):
+    for _ in range(N):
         mean, std, x = randn(3)
         std = abs(std)
 
         d = Gaussian(mean, std, x) - scipy.stats.norm(mean, std).pdf(x)
-        assert abs(d) < 1.e-8, "{}, {}, {}, {}, {}, {}".format(d, mean, std, x, Gaussian(mean, std, x), scipy.stats.norm(mean, std).pdf(x))
+        assert (
+            abs(d) < 1.0e-8
+        ), f"{d}, {mean}, {std}, {x}, {Gaussian(mean, std, x)}, {scipy.stats.norm(mean, std).pdf(x)}"
 
 
 def show_two_pf_plots():
@@ -236,7 +238,7 @@ def show_two_pf_plots():
         elif x == 9:
             plt.subplot(122)
 
-        if x == 0 or x == 9:
+        if x in [0, 9]:
             mu, var = pf.estimate()
             plot_pf(pf, 20, 20, weights=False)
             if x == 0:
@@ -254,33 +256,47 @@ def plot_cumsum(a):
     fig = plt.figure()
     N = len(a)
 
-    cmap = mpl.colors.ListedColormap([[0., .4, 1.],
-                                      [0., .8, 1.],
-                                      [1., .8, 0.],
-                                      [1., .4, 0.]]*(int(N/4) + 1))
+    cmap = mpl.colors.ListedColormap(
+        (
+            [
+                [0.0, 0.4, 1.0],
+                [0.0, 0.8, 1.0],
+                [1.0, 0.8, 0.0],
+                [1.0, 0.4, 0.0],
+            ]
+            * (N // 4 + 1)
+        )
+    )
     cumsum = np.cumsum(np.asarray(a) / np.sum(a))
     cumsum = np.insert(cumsum, 0, 0)
 
     #fig = plt.figure(figsize=(6,3))
     fig=plt.gcf()
-    ax = fig.add_axes([0.05, 0.475, 0.9, 0.15])
-    norm = mpl.colors.BoundaryNorm(cumsum, cmap.N)
-    bar = mpl.colorbar.ColorbarBase(ax, cmap=cmap,
-                                     norm=norm,
-                                     drawedges=False,
-                                     spacing='proportional',
-                                     orientation='horizontal')
     if N > 10:
+        ax = fig.add_axes([0.05, 0.475, 0.9, 0.15])
+        norm = mpl.colors.BoundaryNorm(cumsum, cmap.N)
+        bar = mpl.colorbar.ColorbarBase(ax, cmap=cmap,
+                                         norm=norm,
+                                         drawedges=False,
+                                         spacing='proportional',
+                                         orientation='horizontal')
         bar.set_ticks([])
 
 
 def plot_stratified_resample(a):
     N = len(a)
 
-    cmap = mpl.colors.ListedColormap([[0., .4, 1.],
-                                      [0., .8, 1.],
-                                      [1., .8, 0.],
-                                      [1., .4, 0.]]*(int(N/4) + 1))
+    cmap = mpl.colors.ListedColormap(
+        (
+            [
+                [0.0, 0.4, 1.0],
+                [0.0, 0.8, 1.0],
+                [1.0, 0.8, 0.0],
+                [1.0, 0.4, 0.0],
+            ]
+            * (N // 4 + 1)
+        )
+    )
     cumsum = np.cumsum(np.asarray(a) / np.sum(a))
     cumsum = np.insert(cumsum, 0, 0)
 
@@ -305,10 +321,17 @@ def plot_stratified_resample(a):
 def plot_systematic_resample(a):
     N = len(a)
 
-    cmap = mpl.colors.ListedColormap([[0., .4, 1.],
-                                      [0., .8, 1.],
-                                      [1., .8, 0.],
-                                      [1., .4, 0.]]*(int(N/4) + 1))
+    cmap = mpl.colors.ListedColormap(
+        (
+            [
+                [0.0, 0.4, 1.0],
+                [0.0, 0.8, 1.0],
+                [1.0, 0.8, 0.0],
+                [1.0, 0.4, 0.0],
+            ]
+            * (N // 4 + 1)
+        )
+    )
     cumsum = np.cumsum(np.asarray(a) / np.sum(a))
     cumsum = np.insert(cumsum, 0, 0)
 
@@ -333,10 +356,17 @@ def plot_systematic_resample(a):
 def plot_multinomial_resample(a):
     N = len(a)
 
-    cmap = mpl.colors.ListedColormap([[0., .4, 1.],
-                                      [0., .8, 1.],
-                                      [1., .8, 0.],
-                                      [1., .4, 0.]]*(int(N/4) + 1))
+    cmap = mpl.colors.ListedColormap(
+        (
+            [
+                [0.0, 0.4, 1.0],
+                [0.0, 0.8, 1.0],
+                [1.0, 0.8, 0.0],
+                [1.0, 0.4, 0.0],
+            ]
+            * (N // 4 + 1)
+        )
+    )
     cumsum = np.cumsum(np.asarray(a) / np.sum(a))
     cumsum = np.insert(cumsum, 0, 0)
 
@@ -363,10 +393,17 @@ def plot_residual_resample(a):
     cumsum = np.cumsum(a_norm)
     cumsum = np.insert(cumsum, 0, 0)
 
-    cmap = mpl.colors.ListedColormap([[0., .4, 1.],
-                                      [0., .8, 1.],
-                                      [1., .8, 0.],
-                                      [1., .4, 0.]]*(int(N/4) + 1))
+    cmap = mpl.colors.ListedColormap(
+        (
+            [
+                [0.0, 0.4, 1.0],
+                [0.0, 0.8, 1.0],
+                [1.0, 0.8, 0.0],
+                [1.0, 0.4, 0.0],
+            ]
+            * (N // 4 + 1)
+        )
+    )
 
     fig = plt.figure()
     ax = plt.gcf().add_axes([0.05, 0.475, 0.9, 0.15])

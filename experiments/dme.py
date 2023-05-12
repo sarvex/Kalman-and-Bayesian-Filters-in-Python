@@ -9,7 +9,7 @@ from KalmanFilter import *
 from math import cos, sin, sqrt, atan2
 
 
-def H_of (pos, pos_A, pos_B):
+def H_of(pos, pos_A, pos_B):
     """ Given the position of our object at 'pos' in 2D, and two transmitters
     A and B at positions 'pos_A' and 'pos_B', return the partial derivative
     of H
@@ -18,12 +18,8 @@ def H_of (pos, pos_A, pos_B):
     theta_a = atan2(pos_a[1]-pos[1], pos_a[0] - pos[0])
     theta_b = atan2(pos_b[1]-pos[1], pos_b[0] - pos[0])
 
-    if False:
-        return np.mat([[0, -cos(theta_a), 0, -sin(theta_a)],
-                       [0, -cos(theta_b), 0, -sin(theta_b)]])
-    else:                  
-        return np.mat([[-cos(theta_a), 0, -sin(theta_a), 0],
-                       [-cos(theta_b), 0, -sin(theta_b), 0]])
+    return np.mat([[-cos(theta_a), 0, -sin(theta_a), 0],
+                   [-cos(theta_b), 0, -sin(theta_b), 0]])
 
 class DMESensor(object):
     def __init__(self, pos_a, pos_b, noise_factor=1.0):

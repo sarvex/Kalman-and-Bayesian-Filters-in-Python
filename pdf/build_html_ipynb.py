@@ -10,7 +10,7 @@ def prep_for_html_conversion(filename):
     with io.open(join('..', filename), 'r', encoding='utf-8') as f:
         nb = nbformat.read(f, nbformat.NO_CONVERT)
         remove_formatting(nb)
-        if not added_appendix and filename[0:8] == 'Appendix':
+        if not added_appendix and filename[:8] == 'Appendix':
             remove_links_add_appendix(nb)
             added_appendix = True
         else:

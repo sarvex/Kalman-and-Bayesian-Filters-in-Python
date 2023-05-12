@@ -51,9 +51,9 @@ def predict(prob_dist, offset, kernel):
     prob_dist[:] = result[:] # update belief
 
 
-def add_noise (Z, count):
+def add_noise(Z, count):
     n= len(Z)
-    for i in range(count):
+    for _ in range(count):
         j = random.randint(0,n)
         Z[j] = random.randint(0,2)
 
@@ -150,7 +150,7 @@ def animate_train(loops=5):
 
     robot = Train(world, [.1, .8, .1], .1, .1)
 
-    for i in range(N*loops):
+    for _ in range(N*loops):
         robot.move(1)
         m = robot.sense()
         update(world, belief, m, .9, .1)

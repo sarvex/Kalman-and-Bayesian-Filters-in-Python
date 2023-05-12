@@ -25,7 +25,7 @@ def merge_notebooks(outfile, filenames):
         with io.open(fname, 'r', encoding='utf-8') as f:
             nb = nbformat.read(f, nbformat.NO_CONVERT)
             #remove_formatting(nb)
-            if not added_appendix and fname[0:8] == 'Appendix':
+            if not added_appendix and fname[:8] == 'Appendix':
                 remove_links_add_appendix(nb)
                 added_appendix = True
             else:

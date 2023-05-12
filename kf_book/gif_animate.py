@@ -49,7 +49,7 @@ def animate(filename, func, frames, interval, fig=None, figsize=(6.5, 6.5)):
         """ This draws the 'blank' frame of the video. To work around a bug
         in matplotlib 1.5.1 (#5399) you must supply an empty init function
         for the save to work."""
-        
+
         pass
 
     if fig is None:
@@ -57,10 +57,10 @@ def animate(filename, func, frames, interval, fig=None, figsize=(6.5, 6.5)):
 
     anim = animation.FuncAnimation(fig, func, init_func=init_func,
         frames=frames, interval=interval)
-        
+
     import os
     basename = os.path.splitext(filename)[0]
-    anim.save(basename + '.mp4', writer='ffmpeg')
-    
+    anim.save(f'{basename}.mp4', writer='ffmpeg')
+
     os.system("ffmpeg -y -i {}.mp4 {}.gif".format(basename, basename))
-    os.remove(basename + '.mp4')
+    os.remove(f'{basename}.mp4')

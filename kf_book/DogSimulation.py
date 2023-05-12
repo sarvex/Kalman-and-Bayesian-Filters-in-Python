@@ -65,7 +65,7 @@ class DogSimulation(object):
             2D array, first column contains actual position of dog,
             second column contains the measurement of that position
         """
-        return np.array([self.move_and_sense(dt) for i in range(count)])
+        return np.array([self.move_and_sense(dt) for _ in range(count)])
 
 
 

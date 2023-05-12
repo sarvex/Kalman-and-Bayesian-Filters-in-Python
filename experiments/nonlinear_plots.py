@@ -53,9 +53,6 @@ def f(x):
 
 def g(x):
     return (cos(4*(x/2+0.7)))*sin(0.3*x)-0.9*x
-    return (cos(4*(x/3+0.7)))*sin(0.3*x)-0.9*x
-    #return -x+1.2*np.sin(0.7*x)+3
-    return sin(5-.2*x)
 
 def h(x): return cos(.4*x)*x
 

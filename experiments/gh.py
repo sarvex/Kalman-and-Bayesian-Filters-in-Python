@@ -69,8 +69,8 @@ def weight2():
     gain_scale = 1./10
 
     weights=[2060]
-    for i in range (len(weights)):
-        z = weights[i]
+    for weight in weights:
+        z = weight
         w_pre = w + gain*t
 
         new_w = w_pre * (1-weight_scale) +  z * (weight_scale)
@@ -96,8 +96,8 @@ def weight3():
     gain_scale = 2./3
 
     weights=[158]
-    for i in range (len(weights)):
-        z = weights[i]
+    for weight in weights:
+        z = weight
         w_pre = w + gain*t
 
         new_w = w_pre * (1-weight_scale) +  z * (weight_scale)

@@ -28,8 +28,11 @@ def plot_dog_track(xs, dog, measurement_var, process_var):
     N = len(xs)
     bp.plot_track(dog)
     bp.plot_measurements(xs, label='Sensor')
-    bp.set_labels('variance = {}, process variance = {}'.format(
-              measurement_var, process_var), 'time', 'pos')
+    bp.set_labels(
+        f'variance = {measurement_var}, process variance = {process_var}',
+        'time',
+        'pos',
+    )
     plt.ylim([0, N])
     bp.show_legend()
     plt.show()
@@ -82,8 +85,7 @@ class DogSimulation(object):
 
     def sense_position(self):
         """ Returns measurement of new position in meters."""
-        measurement = self.x + randn()*self.meas_std
-        return measurement
+        return self.x + randn()*self.meas_std
 
     def move_and_sense(self):
         """ Move dog, and return measurement of new position in meters"""

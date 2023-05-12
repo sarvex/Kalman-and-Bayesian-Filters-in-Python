@@ -174,10 +174,7 @@ def plot_estimate_chart_3():
 
 def plot_gh_results(weights, estimates, predictions, actual, time_step=0):
     n = len(weights)
-    if time_step > 0:
-        rng = range(1, n+1)
-    else:
-        rng = range(n, n+1)
+    rng = range(1, n+1) if time_step > 0 else range(n, n+1)
     xs = range(n+1)
     book_plots.plot_measurements(range(1, len(weights)+1), weights, color='k', lines=False)
     book_plots.plot_filter(xs, estimates, marker='o', label='Estimates')
@@ -206,22 +203,3 @@ def plot_g_h_results(measurements, filtered_data,
 
     return
 
-    import time
-    if not interactive:
-        book_plots.plot_filter(filtered_data, **kwargs)
-        book_plots.plot_measurements(measurements, label=z_label)
-        book_plots.show_legend()
-        plt.title(title)
-        plt.gca().set_xlim(left=0,right=len(measurements))
-    else:
-        for i in range(2, len(measurements)):
-            book_plots.plot_filter(filtered_data, **kwargs)
-            book_plots.plot_measurements(measurements, label=z_label)
-            book_plots.show_legend()
-            plt.title(title)
-            plt.gca().set_xlim(left=0,right=len(measurements))
-            plt.gca().canvas.draw()
-            time.sleep(0.5)
-
-if __name__ == '__main__':
-    pass

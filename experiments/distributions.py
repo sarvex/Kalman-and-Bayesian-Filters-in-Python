@@ -33,10 +33,10 @@ def student_t(df, mu, std): # nu equals number of degrees of freedom
     
     
 N = 100000
-ys = [student_t(2.7, 100, 2) for i in range(N)]
+ys = [student_t(2.7, 100, 2) for _ in range(N)]
 plt.hist(ys, 10000, histtype='step')
 
-ys = [random.gauss(100,2) for i in range(N)]
+ys = [random.gauss(100,2) for _ in range(N)]
 plt.hist(ys, 10000, histtype='step',color='r')
 
 plt.show()

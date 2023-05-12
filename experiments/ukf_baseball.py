@@ -146,7 +146,7 @@ def fx(x, dt):
     N = 10
     ball_dt = dt/float(N)
 
-    for i in range(N):
+    for _ in range(N):
         fx.ball.update(ball_dt)
 
     #print('fx', fx.ball.x, fx.ball.v_x, fx.ball.y, fx.ball.v_y)

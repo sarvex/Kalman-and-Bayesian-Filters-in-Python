@@ -194,10 +194,12 @@ def H_of(x, p):
     hyp = (px - x[0, 0])**2 + (py - x[1, 0])**2
     dist = np.sqrt(hyp)
 
-    H = array(
-        [[-(px - x[0, 0]) / dist, -(py - x[1, 0]) / dist, 0],
-         [ (py - x[1, 0]) / hyp,  -(px - x[0, 0]) / hyp, -1]])
-    return H
+    return array(
+        [
+            [-(px - x[0, 0]) / dist, -(py - x[1, 0]) / dist, 0],
+            [(py - x[1, 0]) / hyp, -(px - x[0, 0]) / hyp, -1],
+        ]
+    )
 
 
 def Hx(x, p):
@@ -208,9 +210,7 @@ def Hx(x, p):
     py = p[1]
     dist = np.sqrt((px - x[0, 0])**2 + (py - x[1, 0])**2)
 
-    Hx = array([[dist],
-                [atan2(py - x[1, 0], px - x[0, 0]) - x[2, 0]]])
-    return Hx
+    return array([[dist], [atan2(py - x[1, 0], px - x[0, 0]) - x[2, 0]]])
 
 dt = 1.0
 ekf = RobotEKF(dt, wheelbase=0.5)

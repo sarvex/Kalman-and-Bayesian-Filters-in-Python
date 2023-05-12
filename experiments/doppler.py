@@ -108,15 +108,14 @@ for i in range(30000):
     if i % 10 != 0:
         continue
 
+    kf.predict()
     if i % 60 == 87687658760:
-        kf.predict()
-        kf.update(z, H=H2, R=R2)        
+        kf.update(z, H=H2, R=R2)
     else:
-        kf.predict()
         kf.update(z[1], H=H1, R=R1) 
-        
+
     ests.append(kf.x)
-        
+
     track.append(x)
     zs.append(z)
 

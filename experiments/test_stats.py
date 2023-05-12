@@ -68,7 +68,7 @@ def test_multivariate():
     assert near_equal(mvn(mean,var).pdf(x),
                       multivariate_gaussian(x, mean, var))
 
-    for i in range(100):
+    for _ in range(100):
         x = np.array([rand(), rand()])
         assert near_equal(mvn(mean,var).pdf(x),
                           multivariate_gaussian(x, mean, var))

@@ -49,7 +49,6 @@ dt = 0.05
 
 def hx(x):
     return (x[0]**2 + x[2]**2)**.5
-    pass
 
 
 
@@ -74,7 +73,7 @@ f.Q *= 0.002
 xs = []
 track = []
 
-for i in range(int(20/dt)):
+for _ in range(int(20/dt)):
     z = radar.get_range()
     track.append((radar.pos, radar.vel, radar.alt))
 

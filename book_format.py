@@ -52,17 +52,17 @@ def test_installation():
     v = filterpy.__version__
     min_version = "1.4.4"
     if LooseVersion(v) < LooseVersion(min_version):
-       print("Minimum FilterPy version supported is {}. "
-             "Please install a more recent version.\n"
-             "   ex: pip install filterpy --upgrade".format(
-             min_version))
+        print(
+            f"Minimum FilterPy version supported is {min_version}. Please install a more recent version.\n   ex: pip install filterpy --upgrade"
+        )
 
 
     v = matplotlib.__version__
     min_version = "3.0" # this is really old!!!
     if LooseVersion(v) < LooseVersion(min_version):
-       print("Minimum Matplotlib version supported is {}. "
-             "Please install a more recent version.".format(min_version))
+        print(
+            f"Minimum Matplotlib version supported is {min_version}. Please install a more recent version."
+        )
 
     # require Python 3.6+
     import sys

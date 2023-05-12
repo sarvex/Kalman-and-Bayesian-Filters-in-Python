@@ -20,12 +20,14 @@ class gaussian(object):
             self.mean     = mean
             self.variance = variance
 
-    def __add__ (a, b):
-       return gaussian (a.mean + b.mean, a.variance + b.variance)
+    def __add__(self, b):
+        return gaussian(self.mean + b.mean, self.variance + b.variance)
 
-    def __mul__ (a, b):
-        m = (a.variance*b.mean + b.variance*a.mean) / (a.variance + b.variance)
-        v = 1. / (1./a.variance + 1./b.variance)
+    def __mul__(self, b):
+        m = (self.variance * b.mean + b.variance * self.mean) / (
+            self.variance + b.variance
+        )
+        v = 1. / (1. / self.variance + 1./b.variance)
         return gaussian (m, v)
 
     def __call__(self, x):
